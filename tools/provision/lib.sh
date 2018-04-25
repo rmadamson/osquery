@@ -41,7 +41,9 @@ function setup_brew() {
   fi
 
   # Reset to a deterministic checkout of brew.
-  git reset --hard $BREW_COMMIT
+  if [[ -z "$HOMEBREW_NO_AUTO_RESET" ]]; then
+    git reset --hard $BREW_COMMIT
+  fi
 
   # Create a local cache directory
   mkdir -p "$DEPS/.cache"
